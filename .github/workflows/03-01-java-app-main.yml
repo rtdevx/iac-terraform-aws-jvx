@@ -29,7 +29,7 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: ./infra-java-app1
+    working-directory: ./terraform-manifests
 
 # NOTE: Fetch OIDC credentials so GH Actions can deploy in AWS
 
