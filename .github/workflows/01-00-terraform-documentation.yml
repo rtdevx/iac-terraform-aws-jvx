@@ -17,10 +17,7 @@ jobs:
         #dir: ["module-a", "module-b", "modules/module-c"]
         dir: [
           # Core
-          "core/aws-oidc",
-          "core/aws-s3",
-          # Infrastructure
-          "infra-java-app1"
+          "terraform-manifests"
           ]
     steps:
       - uses: actions/checkout@v3

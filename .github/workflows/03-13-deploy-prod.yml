@@ -8,5 +8,5 @@ jobs:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: prod
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-java1-prod
+      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-prod
       aws_region: eu-west-2
