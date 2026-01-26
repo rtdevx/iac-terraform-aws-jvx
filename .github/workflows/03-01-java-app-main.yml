@@ -1,0 +1,65 @@
+# ! STS API endpoint that GitHub Actions calls to assume the role is regional. `aws-region` must match where OIDC Provider have been deployed (terraform-core/aws-oidc/c5-oidc-provider.tf).
+
+name: 03-01-JAVA-APP1-Main
+
+# NOTE: Workflow Defaults
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      aws_role_arn:
+        required: true
+        type: string
+      aws_region:
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+  
+env:
+  TERRAFORM_VERSION: "1.13.5"
+  #TF_COMMAND: "apply"        # ! APPLY
+  TF_COMMAND: "destroy"       # ! DESTROY
+  
+defaults:
+  run:
+    shell: bash
+    working-directory: ./infra-java-app1
+
+# NOTE: Fetch OIDC credentials so GH Actions can deploy in AWS
+
+jobs:
+  terraform-aws-java-app1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.aws_role_arn }}
+          aws-region: ${{ inputs.aws_region }}
+
+# NOTE: Install Terraform
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }} # OPTIMIZE: This should be fetched from inputs. Each region may use different terraform and / or provider versions. Useful for upgrades.
+
+# NOTE: Terraform Init / Plan / Apply
+      - name: Terraform Init
+        run: terraform init -input=false --backend-config=env_${{ inputs.environment }}.conf
+
+      - name: Terraform Plan
+        run: terraform plan -var-file=env_${{ inputs.environment }}.tfvars
+
+      - name: Terraform Apply
+        run: terraform $TF_COMMAND -auto-approve -var-file=env_${{ inputs.environment }}.tfvars
