@@ -29,7 +29,7 @@ resource "aws_lb" "application_load_balancer" {
 resource "aws_lb_target_group" "private_target_group_80_app1" {
   name        = "private-lb-tg-80-app1-${var.environment}"
   target_type = "instance"
-  port        = 80
+  port        = 8080
   protocol    = "HTTP"
   vpc_id      = module.vpc.vpc_id
 
@@ -42,7 +42,7 @@ resource "aws_lb_target_group" "private_target_group_80_app1" {
   health_check {
     enabled             = true
     interval            = 30
-    path                = "/opt/jvx.jar"
+    path                = "/"
     port                = 80
     healthy_threshold   = 3
     unhealthy_threshold = 3
