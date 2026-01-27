@@ -7,7 +7,8 @@ resource "aws_autoscaling_group" "my_asg" {
   # ! Depends on ALB to be created first. Required for LB Target Groups to be present so it can attach to them.
   depends_on = [module.vpc, aws_lb.application_load_balancer]
 
-  name_prefix               = "${local.name}-"
+  name = "${local.name}-asg" # NOTE: This is how `app-aws` `jvx` app is targeting asg to refresh instances after deployment
+  #name_prefix               = "${local.name}-"
   desired_capacity          = var.environment == "prod" ? 4 : 1  # NOTE: X for prod, Y for everything else
   max_size                  = var.environment == "prod" ? 10 : 2 # NOTE: X for prod, Y for everything else
   min_size                  = var.environment == "prod" ? 2 : 1  # NOTE: X for prod, Y for everything else
