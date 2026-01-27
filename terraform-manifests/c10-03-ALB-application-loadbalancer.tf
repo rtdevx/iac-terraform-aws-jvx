@@ -42,7 +42,7 @@ resource "aws_lb_target_group" "private_target_group_80_app1" {
   health_check {
     enabled             = true
     interval            = 30
-    path                = "/opt/jvx.jar"
+    path                = "/app1/index.html"
     port                = 80
     healthy_threshold   = 3
     unhealthy_threshold = 3
@@ -94,14 +94,12 @@ resource "aws_lb_listener" "application_load_balancer_443" {
   certificate_arn   = aws_acm_certificate.cert.arn
 
   default_action {
-    type = "redirect"
+    type = "fixed-response"
 
-    redirect {
-      protocol    = "HTTPS"
-      port        = "443"
-      host        = aws_route53_record.demo.name
-      path        = "/opt/jvx.jar"
-      status_code = "HTTP_302"
+    fixed_response {
+      content_type = "text/html"
+      message_body = "<html><body><center><h1>Fixed Static message for root content - SSL</h1></center><center><h2><a href=https://${aws_route53_record.demo.name}/opt/jvx.jar>app1</a> </h2></center></body></html>"
+      status_code  = "200"
     }
   }
 }
