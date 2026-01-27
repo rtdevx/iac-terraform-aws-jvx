@@ -34,7 +34,7 @@ defaults:
 # NOTE: Fetch OIDC credentials so GH Actions can deploy in AWS
 
 jobs:
-  terraform-aws-java-app1:
+  terraform-aws-jvx:
     runs-on: ubuntu-latest
 
     steps:
