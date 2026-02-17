@@ -10,7 +10,7 @@ output "ec2_bastion_public_ip" {
   value       = aws_instance.myec2vm_bastion.public_ip
 }
 
-output "ec2_bastion_provate_ip" {
+output "ec2_bastion_private_ip" {
   description = "Private IP address of the Bastion Host"
   value       = aws_instance.myec2vm_bastion.private_ip
 }
