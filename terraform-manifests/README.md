@@ -95,7 +95,7 @@
 | <a name="output_database_subnets"></a> [database\_subnets](#output\_database\_subnets) | List of IDs of database subnets |
 | <a name="output_database_subnets_cidr_blocks"></a> [database\_subnets\_cidr\_blocks](#output\_database\_subnets\_cidr\_blocks) | List of cidr\_blocks of database subnets |
 | <a name="output_dns_lb_demo"></a> [dns\_lb\_demo](#output\_dns\_lb\_demo) | Load Balancer app1 DNS name |
-| <a name="output_ec2_bastion_provate_ip"></a> [ec2\_bastion\_provate\_ip](#output\_ec2\_bastion\_provate\_ip) | Private IP address of the Bastion Host |
+| <a name="output_ec2_bastion_private_ip"></a> [ec2\_bastion\_private\_ip](#output\_ec2\_bastion\_private\_ip) | Private IP address of the Bastion Host |
 | <a name="output_ec2_bastion_public_instance_ids"></a> [ec2\_bastion\_public\_instance\_ids](#output\_ec2\_bastion\_public\_instance\_ids) | Instance ID of the Bastion Host |
 | <a name="output_ec2_bastion_public_ip"></a> [ec2\_bastion\_public\_ip](#output\_ec2\_bastion\_public\_ip) | Public IP address of the Bastion Host |
 | <a name="output_hosted_zone_name"></a> [hosted\_zone\_name](#output\_hosted\_zone\_name) | The Hosted Zone name of the desired Hosted Zone. |
