@@ -23,8 +23,8 @@ permissions:
   
 env:
   TERRAFORM_VERSION: "1.13.5"
-  #TF_COMMAND: "apply"        # ! APPLY
-  TF_COMMAND: "destroy"       # ! DESTROY
+  TF_COMMAND: "apply"        # ! APPLY
+  #TF_COMMAND: "destroy"       # ! DESTROY
   
 defaults:
   run:
