@@ -1,7 +1,7 @@
 # INFO: Domain Registration
 # ? https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 
-resource "aws_route53_record" "demo" {
+resource "aws_route53_record" "aws_skynetx_uk" {
   zone_id = data.aws_route53_zone.hosted_zone.zone_id
   name    = var.dns_name
   type    = "A"

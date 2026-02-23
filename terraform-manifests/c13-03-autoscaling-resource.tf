@@ -7,16 +7,16 @@ resource "aws_autoscaling_group" "my_asg" {
   # ! Depends on ALB to be created first. Required for LB Target Groups to be present so it can attach to them.
   depends_on = [module.vpc, aws_lb.application_load_balancer]
 
-  name = "${local.name}-asg" # NOTE: This is how `app-aws` `jvx` app is targeting asg to refresh instances after deployment
+  name = "${local.name}-asg" # NOTE: This is how `app-aws` (repository), `jvx` app (GitHub Actions) is targeting asg to refresh instances after deployment
   #name_prefix               = "${local.name}-"
-  desired_capacity          = var.environment == "prod" ? 4 : 1  # NOTE: X for prod, Y for everything else
-  max_size                  = var.environment == "prod" ? 10 : 2 # NOTE: X for prod, Y for everything else
-  min_size                  = var.environment == "prod" ? 2 : 1  # NOTE: X for prod, Y for everything else
+  desired_capacity          = var.environment == "prod" ? 2 : 2  # NOTE: X for prod, Y for everything else
+  max_size                  = var.environment == "prod" ? 6 : 4  # NOTE: X for prod, Y for everything else
+  min_size                  = var.environment == "prod" ? 2 : 2  # NOTE: X for prod, Y for everything else
   health_check_grace_period = 300
   health_check_type         = "EC2" # ? "EC2" or "ELB". Controls how health checking is done. Difference between EC2 and ELB?
   vpc_zone_identifier       = module.vpc.private_subnets
 
-  target_group_arns = aws_lb_target_group.private_target_group_80_app1.load_balancer_arns
+  target_group_arns = aws_lb_target_group.private_target_group_8080_jvx.load_balancer_arns
 
   launch_template {
     id      = aws_launch_template.my_launch_template.id

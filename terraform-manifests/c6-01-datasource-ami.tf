@@ -9,7 +9,7 @@ data "aws_ami" "amzlinux2" {
 
   filter {
     name   = "name"
-    values = ["al2023-ami-*-x86_64"]
+    values = ["al2023-ami-*-x86_64"] # FIX: Has to be a machine with SSM agent installed.
   }
 
   filter {

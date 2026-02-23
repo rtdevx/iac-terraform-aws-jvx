@@ -2,5 +2,5 @@
 
 output "dns_lb_demo" {
   description = "Load Balancer app1 DNS name"
-  value       = aws_route53_record.demo.name
+  value       = aws_route53_record.aws_skynetx_uk.name
 }

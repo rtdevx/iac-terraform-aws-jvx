@@ -3,7 +3,7 @@
 /*
 
 resource "aws_dynamodb_table" "statelock" {
-  name         = "dev-p2-aws-vpc-lock"
+  name         = "${local.name}-statelock"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 

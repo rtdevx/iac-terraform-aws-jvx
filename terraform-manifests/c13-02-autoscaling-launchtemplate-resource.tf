@@ -9,13 +9,11 @@ resource "aws_launch_template" "my_launch_template" {
 
   vpc_security_group_ids = [ # NOTE: Attach INGRESS SG
 
-    aws_security_group.private-ssh.id,
-    aws_security_group.private-web-80.id,
+    aws_security_group.private-web-8080.id,
     aws_security_group.private-egress.id # NOTE: Attach EGRESS SG
 
   ]
 
-  key_name  = var.instance_keypair
   user_data = filebase64("${path.module}/app1-install.sh")
 
   ebs_optimized = true
@@ -35,11 +33,17 @@ resource "aws_launch_template" "my_launch_template" {
     enabled = true
   }
 
+  # INFO: Attach IAM Instance Profiles (EC2 instances cannot use IAM roles directly — they must use an instance profile)
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_instance_profile_jvx.name # NOTE: Instance profile Roles and Policies (c14-03-iam-instance-profile-jvx.tf)
+  }
+
   # INFO: Tag specifications for instances launched from this template
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name        = "${local.name}-mylaunchtemplate"
+      Name        = "${local.name}-launchtemplate"
       owners      = local.owners
       environment = local.environment
     }

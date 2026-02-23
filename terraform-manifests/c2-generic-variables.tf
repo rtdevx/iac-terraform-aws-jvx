@@ -12,13 +12,20 @@ variable "aws_region" {
 variable "environment" {
   description = "Environment Variable used as a prefix"
   type        = string
-  default     = "DEV"
+  default     = "dev"
 }
 # INFO: Business Division
 variable "business_division" {
   description = "Business Division in the large organization this Infrastructure belongs"
   type        = string
-  default     = "Operations"
+  default     = "operations"
+}
+
+# INFO: Platform / Product
+variable "platform" {
+  description = "Platform / Product this infrastructure supports"
+  type        = string
+  default     = "aws"
 }
 
 # ! Default values will be overwritten in terraform.tfvars

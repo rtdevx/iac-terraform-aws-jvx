@@ -1,6 +1,8 @@
 # INFO: ASG Scheduled Actions
 # ? https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_schedule
 
+/*
+
 # INFO: Create Scheduled Action-1: Increase capacity during business hours
 resource "aws_autoscaling_schedule" "increase_capacity_7am" {
   scheduled_action_name  = "increase-capacity-7am"
@@ -21,3 +23,5 @@ resource "aws_autoscaling_schedule" "decrease_capacity_5pm" {
   recurrence             = "00 21 * * *"
   autoscaling_group_name = aws_autoscaling_group.my_asg.id
 }
+
+*/

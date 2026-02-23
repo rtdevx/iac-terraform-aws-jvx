@@ -13,7 +13,7 @@ resource "aws_acm_certificate" "cert" {
   domain_name = data.aws_route53_zone.hosted_zone.name
   subject_alternative_names = [
 
-    aws_route53_record.demo.name,
+    aws_route53_record.aws_skynetx_uk.name,
     var.dns_name # NOTE: declared in env_*.tfvars for each environment
 
   ]

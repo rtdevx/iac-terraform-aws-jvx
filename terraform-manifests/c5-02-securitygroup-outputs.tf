@@ -1,41 +1,9 @@
-# INFO: Public Bastion Host Security Group Outputs
-
-# INFO: public_bastion_ssh_sg_group_vpc_id
-output "public_bastion_ssh_sg_group_vpc_id" {
-  description = "The VPC ID"
-  value       = aws_security_group.public-bastion-ssh.vpc_id
-}
-
-# INFO: public_bastion_ssh_sg_group_id
-output "public_bastion_ssh_sg_group_id" {
-  description = "The ID of the security group"
-  value       = aws_security_group.public-bastion-ssh.id
-}
-
-# INFO: public_bastion_ssh_sg_group_name
-output "public_bastion_ssh_sg_group_name" {
-  description = "The name of the security group"
-  value       = aws_security_group.public-bastion-ssh.name
-}
 
 # INFO: Private EC2 Instances Security Group Outputs
 
-# INFO: SSH Groups
+/*
 
-output "private_ssh_sg_group_vpc_id" {
-  description = "The VPC ID"
-  value       = aws_security_group.private-ssh.vpc_id
-}
-
-output "private_ssh_sg_group_id" {
-  description = "The ID of the security group"
-  value       = aws_security_group.private-ssh.id
-}
-
-output "private_ssh_sg_group_name" {
-  description = "The name of the security group"
-  value       = aws_security_group.private-ssh.name
-}
+# NOTE: Port 80 not required for Java application. Section to be removed upon validation.
 
 # INFO: WEB Traffic - 80 Groups
 
@@ -52,6 +20,25 @@ output "private_web80_group_id" {
 output "private_web80_sg_group_name" {
   description = "The name of the security group"
   value       = aws_security_group.private-web-80.name
+}
+
+*/
+
+# INFO: WEB Traffic - 8080 Groups
+
+output "private_web80_sg_group_vpc_id" {
+  description = "The VPC ID"
+  value       = aws_security_group.private-web-8080.vpc_id
+}
+
+output "private_web80_group_id" {
+  description = "The ID of the security group"
+  value       = aws_security_group.private-web-8080.id
+}
+
+output "private_web80_sg_group_name" {
+  description = "The name of the security group"
+  value       = aws_security_group.private-web-8080.name
 }
 
 /*
