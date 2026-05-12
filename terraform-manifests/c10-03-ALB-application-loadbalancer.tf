@@ -91,7 +91,7 @@ resource "aws_lb_target_group" "private_target_group_8080_jvx" {
   health_check {
     enabled             = true
     interval            = 30
-    path                = "/"          # changed from /opt/jvx.jar to root endpoint
+    path                = "/" # changed from /opt/jvx.jar to root endpoint
     port                = "8080"
     healthy_threshold   = 3
     unhealthy_threshold = 3
