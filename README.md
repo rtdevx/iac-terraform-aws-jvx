@@ -62,12 +62,6 @@ Check `dns_name` in `env_\*.tfvars` file, copy the URi and test the application.
 
 **PROD:** https://www.aws.skynetx.uk
 
-# Cleanup
-
-**After** the infrastructure have been **destroyed**:
-
-- folder that keeps terraform state files can be deleted (check `key` variable in `terraform-manifests\env_*.conf`)
-
 # Dependencies
 
 | Repository        | Terraform           | Comment                     |
