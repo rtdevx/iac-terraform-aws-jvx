@@ -37,7 +37,7 @@ description: Create AWS CodePipeline with Multiple Environments Dev and Staging
 
 # Architecture
 
-*Note:* _AWS CodePipeline_ and _AWS CodeBuild_ have been replaced with GitHub Actions.
+**Note:** _AWS CodePipeline_ and _AWS CodeBuild_ have been replaced with _GitHub Actions_.
 
 ![Infrastructure](./assets/infrastructure.png "")
 ![Dev Infrastructure](./assets/infrastructure_dev.png "")
