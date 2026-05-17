@@ -69,6 +69,8 @@ Check `dns_name` in `env_\*.tfvars` file, copy the URi and test the application.
 | Repository        | Terraform           | Comment                     |
 | ----------------- | -------------       | --------------------------- |
 | `terraform-core`  | `aws-backends`      |  S3 Bucket must be present for Terraform S3 backends to work (as configured in `env_\*.conf`, see above).                           |
+| ----------------- | -------------       | --------------------------- |
+| `terraform-core`  | `aws-oicd`      |  OICD IAM Permissions to allow GitHub Actions performing actions in AWS account without using permanently stored credentials.                           |
 
 # Building new region
 
