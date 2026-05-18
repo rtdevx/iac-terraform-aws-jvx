@@ -39,7 +39,7 @@ resource "aws_db_instance" "rdsdb" {
   //engine_version              = data.aws_rds_orderable_db_instance.custom-sqlserver.engine_version
   //instance_class              = data.aws_rds_orderable_db_instance.custom-sqlserver.instance_class
   username                    = var.db_username
-  manage_master_user_password = true # NOTE: Store the password in Secrets Manager automatically, use the AWS-managed KMS key for Secrets Manager, Avoids hard-coded secrets in Terraform state
+  manage_master_user_password = true # NOTE: Store the password in Secrets Manager automatically, use the AWS-managed KMS key for Secrets Manager, avoids hard-coded secrets in Terraform state
 
   /**
   For "manage_master_user_password", retrieve the generated secret via:
