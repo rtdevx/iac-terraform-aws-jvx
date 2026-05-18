@@ -44,15 +44,17 @@ resource "aws_security_group" "private-web-8080" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "private-web-8080_ipv4" {
-  description       = "Allow Port 8080 INBOUND"
+  description       = "Allow Port 8080 INBOUND from ALB only"
   security_group_id = aws_security_group.private-web-8080.id
-  cidr_ipv4         = var.vpc_cidr
-  from_port         = 8080
-  ip_protocol       = "tcp"
-  to_port           = 8080
+
+  //cidr_ipv4         = var.vpc_cidr
+  referenced_security_group_id = aws_security_group.web-alb-public-ingress.id
+
+  from_port   = 8080
+  to_port     = 8080
+  ip_protocol = "tcp"
 
   tags = local.common_tags
-
 }
 
 /*

@@ -9,9 +9,8 @@ resource "aws_lb" "application_load_balancer" {
   load_balancer_type = "application"
 
   security_groups = [
-    aws_security_group.web-alb-private-80.id,
-    aws_security_group.web-alb-private-443.id,
-    aws_security_group.web-alb-private-egress.id
+    aws_security_group.web-alb-public-ingress.id,
+    aws_security_group.web-alb-public-egress.id
   ]
 
   subnets                    = module.vpc.public_subnets
