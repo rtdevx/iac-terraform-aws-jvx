@@ -1,9 +1,9 @@
 # INFO: Allow EC2 instance Read Secret
 /**
-Required for 
-**/
+This policy is attached to "ec2_instance_profile_jvx" IAM Role. This role is used for the instance profile that is attached to EC2 instances launched with "aws_launch_template.my_launch_template".
 
-#data "aws_caller_identity" "current" {} # NOTE: Query aws for current caller identity
+Required to Get Secret from AWS Secrets Manager. Currently used to secure internal traffic coming from Public ALB to EC2 instances with TLS (AWS Secrets Manager stores generated secret to protect java key store).
+**/
 
 # INFO: Create IAM Policy AND attach to a role
 resource "aws_iam_role_policy" "ssm_secret_read" {
@@ -20,7 +20,9 @@ resource "aws_iam_role_policy" "ssm_secret_read" {
           "secretsmanager:GetSecretValue",
           "secretsmanager:DescribeSecret"
         ]
-        Resource = "*"
+        Resource = [
+          aws_secretsmanager_secret.jvx_tls_keystore.arn
+        ]
       }
     ]
   })
