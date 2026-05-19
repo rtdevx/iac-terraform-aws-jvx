@@ -3,7 +3,7 @@
 Required for 
 **/
 
-data "aws_caller_identity" "current" {} # NOTE: Query aws for current caller identity
+#data "aws_caller_identity" "current" {} # NOTE: Query aws for current caller identity
 
 # INFO: Create IAM Policy AND attach to a role
 resource "aws_iam_role_policy" "ssm_secret_read" {
@@ -20,7 +20,7 @@ resource "aws_iam_role_policy" "ssm_secret_read" {
           "secretsmanager:GetSecretValue",
           "secretsmanager:DescribeSecret"
         ]
-        Resource = "*" # ? Who is the caller in GH actions scenario? EC2 instance or GitHub?
+        Resource = "*"
       }
     ]
   })
