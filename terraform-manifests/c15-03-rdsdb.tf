@@ -71,15 +71,19 @@ resource "aws_db_instance" "rdsdb" {
   backup_window                   = "03:00-06:00"
   enabled_cloudwatch_logs_exports = ["general", "slowquery", "error"]
 
+
+  # INFO: Performance Insights
   # TODO: "api error InvalidParameterCombination: Performance Insights not supported for this configuration". Check in environments where PI is enabled.
   performance_insights_enabled          = var.environment == "prod" ? true : false                                # NOTE: PI is one of the best diagnostic tools AWS offers.
   performance_insights_retention_period = var.environment == "prod" ? 731 : 0 # NOTE: Only enable when `performance_insights_enabled` is set to true. Retention values: RDS only allows 7 or 731 days.
 
+  # INFO: Timeouts
   timeouts {
     create = "40m"
     delete = "90m"
     update = "1h"
   }
 
+  # INFO: Tags
   tags = local.common_tags
 }
