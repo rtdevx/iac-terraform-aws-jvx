@@ -47,9 +47,9 @@ output "listeners_443" {
 
 # * SSL Termination at LB level. Out of scope for Terraform.
 
-output "target_groups_8080_jvx" {
+output "target_groups_8443_jvx" {
   description = "Map of target groups created and their attributes"
-  value       = aws_lb_target_group.private_target_group_8080_jvx
+  value       = aws_lb_target_group.private_target_group_8443_jvx
 }
 
 # INFO: Application Load Balancer - Listener Rules

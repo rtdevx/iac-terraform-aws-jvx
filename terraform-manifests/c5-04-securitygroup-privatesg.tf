@@ -32,26 +32,26 @@ resource "aws_vpc_security_group_ingress_rule" "private-web-80_ipv4" {
 
 */
 
-# INFO: Create Ingress Security Group - WEB Traffic - 8080
+# INFO: Create Ingress Security Group - WEB Traffic - 8443
 
-resource "aws_security_group" "private-web-8080" {
-  name        = "${local.name}-private-web-8080"
-  description = "Security Group for Private Instances - WEB Traffic Port 8080"
+resource "aws_security_group" "private-web-8443" {
+  name        = "${local.name}-private-web-8443"
+  description = "Security Group for Private Instances - WEB Traffic Port 8443"
   vpc_id      = module.vpc.vpc_id
 
   tags = local.common_tags
 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "private-web-8080_ipv4" {
-  description       = "Allow Port 8080 INBOUND from ALB only"
-  security_group_id = aws_security_group.private-web-8080.id
+resource "aws_vpc_security_group_ingress_rule" "private-web-8443_ipv4" {
+  description       = "Allow Port 8443 INBOUND from ALB only"
+  security_group_id = aws_security_group.private-web-8443.id
 
   //cidr_ipv4         = var.vpc_cidr
   referenced_security_group_id = aws_security_group.web-alb-public-ingress.id
 
-  from_port   = 8080
-  to_port     = 8080
+  from_port   = 8443
+  to_port     = 8443
   ip_protocol = "tcp"
 
   tags = local.common_tags

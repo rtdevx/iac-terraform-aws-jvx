@@ -15,7 +15,7 @@ resource "aws_vpc_security_group_ingress_rule" "private-db-3306_ipv4" {
   description       = "Allow Port 3306 INBOUND"
   security_group_id = aws_security_group.private-db-3306.id
   //cidr_ipv4         = var.vpc_cidr
-  referenced_security_group_id = aws_security_group.private-web-8080.id
+  referenced_security_group_id = aws_security_group.private-web-8443.id
   from_port                    = 3306
   ip_protocol                  = "tcp"
   to_port                      = 3306

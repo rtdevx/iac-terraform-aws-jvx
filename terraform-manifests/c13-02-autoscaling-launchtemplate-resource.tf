@@ -9,12 +9,17 @@ resource "aws_launch_template" "my_launch_template" {
 
   vpc_security_group_ids = [ # NOTE: Attach INGRESS SG
 
-    aws_security_group.private-web-8080.id,
+    aws_security_group.private-web-8443.id,
     aws_security_group.private-egress.id # NOTE: Attach EGRESS SG
 
   ]
+  
+  #user_data = filebase64("${path.module}/app1-install.sh")
+  user_data = base64encode(templatefile("${path.module}/app1-install.sh.tpl", {
+    jvx_tls_keystore_secret_arn = aws_secretsmanager_secret.jvx_tls_keystore.arn
+    aws_region                   = var.aws_region
+  }))
 
-  user_data = filebase64("${path.module}/app1-install.sh")
 
   ebs_optimized = true
   //default_version        = 1.0

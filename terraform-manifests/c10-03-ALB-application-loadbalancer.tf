@@ -57,7 +57,7 @@ resource "aws_lb_listener" "application_load_balancer_443" {
 
     forward {
       target_group {
-        arn    = aws_lb_target_group.private_target_group_8080_jvx.arn
+        arn    = aws_lb_target_group.private_target_group_8443_jvx.arn
         weight = 100
       }
       stickiness {
@@ -74,11 +74,11 @@ resource "aws_lb_listener" "application_load_balancer_443" {
 # INFO: jvx
 # * Only HTTP ports. SSL Termination at LB level. Out of scope for Terraform.
 
-resource "aws_lb_target_group" "private_target_group_8080_jvx" {
-  name        = "private-lb-tg-8080-jvx-${var.environment}"
+resource "aws_lb_target_group" "private_target_group_8443_jvx" {
+  name        = "private-lb-tg-8443-jvx-${var.environment}"
   target_type = "instance"
-  port        = 8080
-  protocol    = "HTTP"
+  protocol = "HTTPS"
+  port     = 8443  
   vpc_id      = module.vpc.vpc_id
 
   stickiness {
@@ -91,11 +91,11 @@ resource "aws_lb_target_group" "private_target_group_8080_jvx" {
     enabled             = true
     interval            = 30
     path                = "/" # changed from /opt/jvx.jar to root endpoint
-    port                = "8080"
+    port                = "8443"
     healthy_threshold   = 3
     unhealthy_threshold = 3
     timeout             = 6
-    protocol            = "HTTP"
+    protocol            = "HTTPS"
     matcher             = "200-399"
   }
 }
@@ -105,7 +105,7 @@ resource "aws_lb_target_group" "private_target_group_8080_jvx" {
 
 resource "aws_autoscaling_attachment" "my_asg_attachment" {
   autoscaling_group_name = aws_autoscaling_group.my_asg.id
-  lb_target_group_arn    = aws_lb_target_group.private_target_group_8080_jvx.arn
+  lb_target_group_arn    = aws_lb_target_group.private_target_group_8443_jvx.arn
 }
 
 # INFO: Application Load Balancer - Listener Rules
@@ -122,7 +122,7 @@ resource "aws_lb_listener_rule" "host_based_routing_jvx" {
     type = "forward"
     forward {
       target_group {
-        arn    = aws_lb_target_group.private_target_group_8080_jvx.arn
+        arn    = aws_lb_target_group.private_target_group_8443_jvx.arn
         weight = 100
       }
       stickiness {

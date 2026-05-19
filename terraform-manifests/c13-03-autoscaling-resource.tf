@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "my_asg" {
   health_check_type         = "EC2" # ? "EC2" or "ELB". Controls how health checking is done. Difference between EC2 and ELB?
   vpc_zone_identifier       = module.vpc.private_subnets
 
-  target_group_arns = aws_lb_target_group.private_target_group_8080_jvx.load_balancer_arns
+  target_group_arns = aws_lb_target_group.private_target_group_8443_jvx.load_balancer_arns
 
   launch_template {
     id      = aws_launch_template.my_launch_template.id

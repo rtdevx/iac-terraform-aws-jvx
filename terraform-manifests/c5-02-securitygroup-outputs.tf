@@ -24,21 +24,21 @@ output "private_web80_sg_group_name" {
 
 */
 
-# INFO: WEB Traffic - 8080 Groups
+# INFO: WEB Traffic - 8443 Groups
 
 output "private_web80_sg_group_vpc_id" {
   description = "The VPC ID"
-  value       = aws_security_group.private-web-8080.vpc_id
+  value       = aws_security_group.private-web-8443.vpc_id
 }
 
 output "private_web80_group_id" {
   description = "The ID of the security group"
-  value       = aws_security_group.private-web-8080.id
+  value       = aws_security_group.private-web-8443.id
 }
 
 output "private_web80_sg_group_name" {
   description = "The name of the security group"
-  value       = aws_security_group.private-web-8080.name
+  value       = aws_security_group.private-web-8443.name
 }
 
 /*
