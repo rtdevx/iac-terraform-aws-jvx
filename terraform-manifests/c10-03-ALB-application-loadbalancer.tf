@@ -96,7 +96,8 @@ resource "aws_lb_target_group" "private_target_group_8443_jvx" {
     unhealthy_threshold = 3
     timeout             = 6
     protocol            = "HTTPS"
-    matcher             = "200-399"
+    #matcher             = "200-399"
+    matcher             = "200" # NOTE: ASG refresh stops if new nodes are unhealthy
   }
 }
 
