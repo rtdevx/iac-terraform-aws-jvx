@@ -24,3 +24,15 @@ provider "aws" {
   # NOTE: Profile only required when running Terraform locally on your desktop/laptop. CodePipeline will use Parameters defined in the Parameter Store.
   //profile = "default" # NOTE: AWS Credentials Profile (profile = "default") configured on your local desktop terminal ($HOME/.aws/credentials)
 } 
+
+# INFO: Random Pet
+# ? https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet.html
+
+provider "random" {}
+
+resource "random_pet" "string" {
+  length    = 2
+  separator = "-"
+}
+
+# NOTE: Usage: "your_value-${random_pet.string.id}"
