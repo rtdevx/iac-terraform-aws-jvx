@@ -14,12 +14,13 @@ resource "aws_launch_template" "my_launch_template" {
 
   ]
   
+  # INFO: USER_DATA
   #user_data = filebase64("${path.module}/app1-install.sh")
-  user_data = base64encode(templatefile("${path.module}/app1-install.sh.tpl", {
+  user_data = base64encode(templatefile("${path.module}/app1-install.sh", {
+    # NOTE: Make Terraform variables / values available in USER_DATA
     jvx_tls_keystore_secret_arn = aws_secretsmanager_secret.jvx_tls_keystore.arn
     aws_region                   = var.aws_region
   }))
-
 
   ebs_optimized = true
   //default_version        = 1.0
