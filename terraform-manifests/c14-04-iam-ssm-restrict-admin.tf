@@ -15,7 +15,7 @@ resource "aws_iam_policy" "ssm_admin_access" {
           "ssm:StartSession"
         ],
         "Resource" : [
-          "arn:aws:ec2:*:390157243794:instance/*" # ?: Hardcoded Account. Should admin group be allowed to run "arn:aws:ssm:" in all regions and only be restricted by "ssm:StartSession" for the specific EC2 instances in the specific account?
+          "arn:aws:ec2:*:${var.aws_account_id}:instance/*" # ?: Hardcoded Account. Should admin group be allowed to run "arn:aws:ssm:" in all regions and only be restricted by "ssm:StartSession" for the specific EC2 instances in the specific account?
         ],
         "Condition" : {
           "StringLike" : {
@@ -53,7 +53,7 @@ resource "aws_iam_policy" "ssm_admin_access" {
           "ssm:GetDocument",
           "ssm:StartSession"
         ],
-        "Resource" : "arn:aws:ssm:${var.aws_region}:390157243794:document/SSM-SessionManagerRunShell" # ?: Hardcoded Account. Should admin group be allowed to run "arn:aws:ssm:" in all regions and only be restricted by "ssm:StartSession" for the specific EC2 instances in the specific account?
+        "Resource" : "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:document/SSM-SessionManagerRunShell" # ?: Hardcoded Account. Should admin group be allowed to run "arn:aws:ssm:" in all regions and only be restricted by "ssm:StartSession" for the specific EC2 instances in the specific account?
       },
       {
         "Effect" : "Allow",

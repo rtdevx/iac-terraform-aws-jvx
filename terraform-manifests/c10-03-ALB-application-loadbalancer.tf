@@ -77,8 +77,8 @@ resource "aws_lb_listener" "application_load_balancer_443" {
 resource "aws_lb_target_group" "private_target_group_8443_jvx" {
   name        = "private-lb-tg-8443-jvx-${var.environment}"
   target_type = "instance"
-  protocol = "HTTPS"
-  port     = 8443  
+  protocol    = "HTTPS"
+  port        = 8443
   vpc_id      = module.vpc.vpc_id
 
   stickiness {
@@ -97,7 +97,7 @@ resource "aws_lb_target_group" "private_target_group_8443_jvx" {
     timeout             = 6
     protocol            = "HTTPS"
     #matcher             = "200-399"
-    matcher             = "200" # NOTE: ASG refresh stops if new nodes are unhealthy
+    matcher = "200" # NOTE: ASG refresh stops if new nodes are unhealthy
   }
 }
 
