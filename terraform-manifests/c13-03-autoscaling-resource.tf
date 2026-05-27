@@ -9,7 +9,7 @@ resource "aws_autoscaling_group" "my_asg" {
 
   name = "${local.name}-asg" # NOTE: This is how `app-aws` (repository), `jvx` app (GitHub Actions) is targeting asg to refresh instances after deployment
   #name_prefix               = "${local.name}-"
-  desired_capacity          = var.environment == "prod" ? 2 : 2 # NOTE: X for prod, Y for everything else
+  desired_capacity          = var.environment == "prod" ? 4 : 2 # NOTE: X for prod, Y for everything else
   max_size                  = var.environment == "prod" ? 6 : 4 # NOTE: X for prod, Y for everything else
   min_size                  = var.environment == "prod" ? 2 : 2 # NOTE: X for prod, Y for everything else
   health_check_grace_period = 300
