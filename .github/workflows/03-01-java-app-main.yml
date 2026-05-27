@@ -69,4 +69,5 @@ jobs:
         run: terraform plan -var-file=env_${{ inputs.environment }}.tfvars
 
       - name: Terraform Apply/Destroy
+        if: ${{ inputs.tf_command != 'plan' }} # NOTE: Required for the terraform plan to be applied with reusable workflow (when only plan is being run, don't run this.)
         run: terraform ${{ inputs.tf_command }} -auto-approve -var-file=env_${{ inputs.environment }}.tfvars
