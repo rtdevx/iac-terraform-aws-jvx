@@ -4,6 +4,10 @@ name: 03-14-JAVA-APP1-INFRASTRUCTURE
 on:
   workflow_dispatch:
 
+env:
+  AWS_ACCOUNT_ID: 390157243794
+  AWS_REGION: eu-west-2
+
 permissions:
   id-token: write
   contents: read  # NOTE: `id-token: write` is required for OIDC role assumption; `contents: read` allows reading repository content.
@@ -16,8 +20,8 @@ jobs:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: dev
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-dev
-      aws_region: eu-west-2
+      aws_role_arn: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/iac-aws-oidcRole-infra-jvx-dev
+      aws_region: ${{ env.AWS_REGION }}
 
   deploy-stag:
     # NOTE: Deploy to staging after dev completes successfully.
@@ -26,8 +30,8 @@ jobs:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: stag
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-stag
-      aws_region: eu-west-2
+      aws_role_arn: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/iac-aws-oidcRole-infra-jvx-stag
+      aws_region: ${{ env.AWS_REGION }}
 
   approve-prod:
     # NOTE: Manual approval gate before production deployment.
@@ -50,5 +54,5 @@ jobs:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: prod
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-prod
-      aws_region: eu-west-2      
+      aws_role_arn: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/iac-aws-oidcRole-infra-jvx-prod
+      aws_region: ${{ env.AWS_REGION }}     

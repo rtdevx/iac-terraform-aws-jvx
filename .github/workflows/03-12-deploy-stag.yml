@@ -3,10 +3,14 @@ name: 03-12-JAVA-APP1-STAG
 on:
   workflow_dispatch:
 
+env:
+  AWS_ACCOUNT_ID: 390157243794
+  AWS_REGION: eu-west-2
+
 jobs:
   deploy:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: stag
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-stag
-      aws_region: eu-west-2
+      aws_role_arn: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/iac-aws-oidcRole-infra-jvx-stag
+      aws_region: ${{ env.AWS_REGION }}
