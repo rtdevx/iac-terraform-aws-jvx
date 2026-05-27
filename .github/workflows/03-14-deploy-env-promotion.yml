@@ -4,10 +4,6 @@ name: 03-14-JAVA-APP1-INFRASTRUCTURE
 on:
   workflow_dispatch:
 
-env:
-  AWS_ACCOUNT_ID: 390157243794
-  AWS_REGION: eu-west-2
-
 permissions:
   id-token: write
   contents: read  # NOTE: `id-token: write` is required for OIDC role assumption; `contents: read` allows reading repository content.
