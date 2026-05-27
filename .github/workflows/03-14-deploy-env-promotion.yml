@@ -1,4 +1,4 @@
-name: 03-20-JAVA-APP1-Promotion
+name: 03-20-JAVA-APP1-DEPLOY-Promotion
 
 on:
   workflow_dispatch:

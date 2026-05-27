@@ -1,4 +1,4 @@
-name: 03-13-JAVA-APP1-PROD
+name: 03-13-JAVA-APP1-DEPLOY-PROD
 
 on:
   workflow_dispatch:
