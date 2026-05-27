@@ -41,3 +41,59 @@ resource "aws_autoscaling_policy" "alb_target_requests_greater_than_yy" {
 }
 
 */
+
+/*
+# INFO: TTS - Scaling Policy-3: Different scaling policies for scaling out and scaling in
+# ! TO BE TESTED
+
+resource "aws_autoscaling_policy" "scale_up" {
+  name                    = "${local.name}-scale-up"
+  policy_type             = "StepScaling"
+  autoscaling_group_name  = aws_autoscaling_group.my_asg.id
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 300
+
+  step_adjustment {
+    metric_interval_lower_bound = 0
+    scaling_adjustment          = 1
+  }
+}
+
+resource "aws_autoscaling_policy" "scale_down" {
+  name                    = "${local.name}-scale-down"
+  policy_type             = "StepScaling"
+  autoscaling_group_name  = aws_autoscaling_group.my_asg.id
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 600
+
+  step_adjustment {
+    metric_interval_upper_bound = 0
+    scaling_adjustment          = -1
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+  alarm_name                = "${local.name}-cpu-high"
+  namespace                 = "AWS/EC2"
+  metric_name               = "CPUUtilization"
+  statistic                 = "Average"
+  period                    = 60
+  evaluation_periods        = 5   # 300 seconds
+  threshold                 = 70
+  comparison_operator       = "GreaterThanThreshold"
+  alarm_actions             = [aws_autoscaling_policy.scale_up.arn]
+}
+
+resource "aws_cloudwatch_metric_alarm" "cpu_low" {
+  alarm_name                = "${local.name}-cpu-low"
+  namespace                 = "AWS/EC2"
+  metric_name               = "CPUUtilization"
+  statistic                 = "Average"
+  period                    = 60
+  evaluation_periods        = 10  # 600 seconds
+  threshold                 = 30
+  comparison_operator       = "LessThanThreshold"
+  alarm_actions             = [aws_autoscaling_policy.scale_down.arn]
+}
+
+*/
