@@ -1,4 +1,4 @@
-name: 02-01-JAVA-APP1-Plan
+name: 02-01-JAVA-APP1-PLAN
 
 on:
   workflow_dispatch:
