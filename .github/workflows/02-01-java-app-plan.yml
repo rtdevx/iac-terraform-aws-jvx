@@ -1,0 +1,24 @@
+name: 02-01-JAVA-APP1-Plan
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to plan (dev, stag, prod)"
+        required: true
+        type: choice
+        options:
+          - dev
+          - stag
+          - prod
+
+jobs:
+  plan:
+    uses: ./.github/workflows/03-01-java-app-main.yml
+    with:
+      environment: ${{ inputs.environment }}
+      aws_account_id: "390157243794"
+      aws_region: "eu-west-2"
+      terraform_version: "1.13.5"
+      role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
+      tf_command: "plan"

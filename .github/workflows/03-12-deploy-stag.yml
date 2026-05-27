@@ -1,4 +1,4 @@
-name: 03-12-JAVA-APP1-STAG
+name: 03-11-JAVA-APP1-STAG
 
 on:
   workflow_dispatch:
@@ -8,5 +8,8 @@ jobs:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: stag
-      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-stag
-      aws_region: eu-west-2
+      aws_account_id: "390157243794"
+      aws_region: "eu-west-2"
+      terraform_version: "1.13.5"
+      role_name: "iac-aws-oidcRole-infra-jvx-stag"
+      tf_command: "apply"
