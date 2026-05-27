@@ -3,14 +3,10 @@ name: 03-11-JAVA-APP1-DEV
 on:
   workflow_dispatch:
 
-env:
-  AWS_ACCOUNT_ID: 390157243794
-  AWS_REGION: eu-west-2
-
 jobs:
   deploy:
     uses: ./.github/workflows/03-01-java-app-main.yml
     with:
       environment: dev
-      aws_role_arn: ${{ format('arn:aws:iam::{}:role/iac-aws-oidcRole-infra-jvx-dev', env.AWS_ACCOUNT_ID) }}
-      aws_region: ${{ env.AWS_REGION }}
+      aws_role_arn: arn:aws:iam::390157243794:role/iac-aws-oidcRole-infra-jvx-dev
+      aws_region: eu-west-2
