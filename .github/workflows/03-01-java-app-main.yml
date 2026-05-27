@@ -10,31 +10,41 @@ on:
       environment:
         required: true
         type: string
-      aws_role_arn:
+
+      aws_account_id:
         required: true
         type: string
+
       aws_region:
         required: true
         type: string
 
+      terraform_version:
+        required: true
+        type: string
+
+      role_name:
+        required: true
+        type: string
+
+      tf_command:
+        required: false
+        type: string
+        default: "apply"
+
 permissions:
   id-token: write
   contents: read
-  
-env:
-  TERRAFORM_VERSION: "1.13.5"
-  TF_COMMAND: "apply"        # ! APPLY
-  #TF_COMMAND: "destroy"       # ! DESTROY
-  
+
 defaults:
   run:
     shell: bash
     working-directory: ./terraform-manifests
 
-# NOTE: Fetch OIDC credentials so GH Actions can deploy in AWS
+# NOTE: Jobs
 
 jobs:
-  terraform-aws-jvx:
+  terraform:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,22 +54,19 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ inputs.aws_role_arn }}
+          role-to-assume: arn:aws:iam::${{ inputs.aws_account_id }}:role/${{ inputs.role_name }}
           aws-region: ${{ inputs.aws_region }}
-
-# NOTE: Install Terraform
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ env.TERRAFORM_VERSION }} # OPTIMIZE: This should be fetched from inputs. Each region may use different terraform and / or provider versions. Useful for upgrades.
+          terraform_version: ${{ inputs.terraform_version }}
 
-# NOTE: Terraform Init / Plan / Apply
       - name: Terraform Init
         run: terraform init -input=false --backend-config=env_${{ inputs.environment }}.conf
 
       - name: Terraform Plan
         run: terraform plan -var-file=env_${{ inputs.environment }}.tfvars
 
-      - name: Terraform Apply
-        run: terraform $TF_COMMAND -auto-approve -var-file=env_${{ inputs.environment }}.tfvars
+      - name: Terraform Apply/Destroy
+        run: terraform ${{ inputs.tf_command }} -auto-approve -var-file=env_${{ inputs.environment }}.tfvars
