@@ -3,6 +3,10 @@ name: 03-12-JAVA-APP1-STAG
 on:
   workflow_dispatch:
 
+env:
+  AWS_ACCOUNT_ID: 390157243794
+  AWS_REGION: eu-west-2  
+      
 jobs:
   deploy:
     uses: ./.github/workflows/03-01-java-app-main.yml

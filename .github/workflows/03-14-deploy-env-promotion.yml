@@ -8,6 +8,10 @@ permissions:
   id-token: write
   contents: read  # NOTE: `id-token: write` is required for OIDC role assumption; `contents: read` allows reading repository content.
 
+env:
+  AWS_ACCOUNT_ID: 390157243794
+  AWS_REGION: eu-west-2    
+
 jobs:
   # NOTE: The following jobs reuse the `03-01-java-app-main.yml` reusable workflow.
   deploy-dev:
