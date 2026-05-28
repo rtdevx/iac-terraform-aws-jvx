@@ -21,6 +21,15 @@ on:
           - "111111111111"   # Example: Shared Services
           - "222222222222"   # Example: Security
 
+      role_name:
+        description: "IAM Role Name"
+        required: true
+        type: choice
+        options:
+          - iac-aws-oidcRole-infra-jvx-dev
+          - iac-aws-oidcRole-infra-jvx-stag
+          - iac-aws-oidcRole-infra-jvx-prod          
+
       aws_region:
         description: "Select AWS Region"
         required: true
@@ -47,5 +56,6 @@ jobs:
       aws_account_id: ${{ inputs.aws_account_id }}
       aws_region: ${{ inputs.aws_region }}
       terraform_version: ${{ inputs.terraform_version }}
-      role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
+      #role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
+      role_name: ${{ inputs.role_name }}
       tf_command: "plan"
