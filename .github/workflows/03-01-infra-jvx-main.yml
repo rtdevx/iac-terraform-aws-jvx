@@ -1,6 +1,6 @@
 # ! STS API endpoint that GitHub Actions calls to assume the role is regional. `aws-region` must match where OIDC Provider have been deployed (terraform-core/aws-oidc/c5-oidc-provider.tf).
 
-name: 03-01-JAVA-APP1-Main
+name: 03-01-INFRA-JVX-MAIN
 
 # NOTE: Workflow Defaults
 

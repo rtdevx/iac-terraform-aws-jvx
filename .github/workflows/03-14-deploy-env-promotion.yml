@@ -6,7 +6,7 @@ on:
 jobs:
   deploy-dev:
     name: Deploy to DEV
-    uses: ./.github/workflows/03-01-java-app-main.yml
+    uses: ./.github/workflows/03-01-infra-jvx-main.yml
     with:
       environment: dev
       aws_account_id: "390157243794"
@@ -18,7 +18,7 @@ jobs:
   deploy-stag:
     name: Deploy to STAGING
     needs: deploy-dev
-    uses: ./.github/workflows/03-01-java-app-main.yml
+    uses: ./.github/workflows/03-01-infra-jvx-main.yml
     with:
       environment: stag
       aws_account_id: "390157243794"
@@ -39,7 +39,7 @@ jobs:
   deploy-prod:
     name: Deploy to PROD
     needs: approve-prod
-    uses: ./.github/workflows/03-01-java-app-main.yml
+    uses: ./.github/workflows/03-01-infra-jvx-main.yml
     with:
       environment: prod
       aws_account_id: "390157243794"

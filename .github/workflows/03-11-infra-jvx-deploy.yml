@@ -50,7 +50,7 @@ on:
 
 jobs:
   plan:
-    uses: ./.github/workflows/03-01-java-app-main.yml
+    uses: ./.github/workflows/03-01-infra-jvx-main.yml
     with:
       environment: ${{ inputs.environment }}
       aws_account_id: ${{ inputs.aws_account_id }}
