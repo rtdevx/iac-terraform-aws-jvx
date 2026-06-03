@@ -1,4 +1,4 @@
-name: 03-20-JAVA-APP1-DEPLOY-Promotion
+name: 03-20-INFRA-JVX-DEPLOY-ENV-Promotion
 
 on:
   workflow_dispatch:
