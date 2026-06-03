@@ -48,4 +48,4 @@ jobs:
       aws_region: ${{ inputs.aws_region }}
       terraform_version: ${{ inputs.terraform_version }}
       role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
-      tf_command: "plan"
+      terraform_command: "plan"

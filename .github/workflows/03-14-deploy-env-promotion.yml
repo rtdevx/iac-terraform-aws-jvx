@@ -13,7 +13,7 @@ jobs:
       aws_region: "eu-west-2"
       terraform_version: "1.13.5"
       role_name: "iac-aws-oidcRole-infra-jvx-dev"
-      tf_command: "apply"
+      terraform_command: "apply"
 
   deploy-stag:
     name: Deploy to STAGING
@@ -25,7 +25,7 @@ jobs:
       aws_region: "eu-west-2"
       terraform_version: "1.13.5"
       role_name: "iac-aws-oidcRole-infra-jvx-stag"
-      tf_command: "apply"
+      terraform_command: "apply"
 
   approve-prod:
     name: Await Approval for PROD
@@ -46,4 +46,4 @@ jobs:
       aws_region: "eu-west-2"
       terraform_version: "1.13.5"
       role_name: "iac-aws-oidcRole-infra-jvx-prod"
-      tf_command: "apply"
+      terraform_command: "apply"

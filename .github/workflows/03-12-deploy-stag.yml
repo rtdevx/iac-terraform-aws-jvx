@@ -12,4 +12,4 @@ jobs:
       aws_region: "eu-west-2"
       terraform_version: "1.13.5"
       role_name: "iac-aws-oidcRole-infra-jvx-stag"
-      tf_command: "apply"
+      terraform_command: "apply"
