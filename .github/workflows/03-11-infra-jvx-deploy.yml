@@ -12,6 +12,8 @@ on:
           - stag
           - prod
 
+# NOTE: Reserved for future use. Pre-req must be met first.
+
 #      aws_account_id:
 #        description: "Select AWS Account"
 #        required: true
