@@ -18,7 +18,7 @@ on:
         type: choice
         options:
           - "390157243794"   # DEV/STAG/PROD account
-          - "111111111111"   # Example: Shared Services
+          - "643681787576"   # Example: Shared Services
           - "222222222222"   # Example: Security
 
       aws_region:
