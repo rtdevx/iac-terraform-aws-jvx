@@ -1,4 +1,4 @@
-name: 02-01-JAVA-APP1-PLAN
+name: 03-11-INFRA-JVX-DEPLOY
 
 on:
   workflow_dispatch:
@@ -39,6 +39,15 @@ on:
           - "1.14.0"
           - "1.15.2"
 
+      terraform_command:
+        description: "Terraform command"
+        required: true
+        type: choice
+        options:
+          - "plan"
+          - "apply"
+          - "destroy"          
+
 jobs:
   plan:
     uses: ./.github/workflows/03-01-java-app-main.yml
@@ -48,4 +57,4 @@ jobs:
       aws_region: ${{ inputs.aws_region }}
       terraform_version: ${{ inputs.terraform_version }}
       role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
-      terraform_command: "plan"
+      terraform_command: ${{ inputs.terraform_command }}
