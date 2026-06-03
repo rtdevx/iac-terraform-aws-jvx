@@ -1,0 +1,60 @@
+name: 02-01-INFRA-JVX-DEPLOY
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to plan"
+        required: true
+        type: choice
+        options:
+          - dev
+          - stag
+          - prod
+
+      aws_account_id:
+        description: "Select AWS Account"
+        required: true
+        type: choice
+        options:
+          - "390157243794"   # DEV/STAG/PROD account
+          - "111111111111"   # Example: Shared Services
+          - "222222222222"   # Example: Security
+
+      aws_region:
+        description: "Select AWS Region"
+        required: true
+        type: choice
+        options:
+          - eu-west-2
+          - eu-west-1
+          - eu-central-1
+
+      terraform_version:
+        description: "Terraform Version"
+        required: true
+        type: choice
+        options:
+          - "1.13.5"
+          - "1.14.0"
+          - "1.15.2"
+
+      terraform_command:
+        description: "Terraform command"
+        required: true
+        type: choice
+        options:
+          - "plan"
+          - "apply"
+          - "destroy"          
+
+jobs:
+  plan:
+    uses: ./.github/workflows/03-01-java-app-main.yml
+    with:
+      environment: ${{ inputs.environment }}
+      aws_account_id: ${{ inputs.aws_account_id }}
+      aws_region: ${{ inputs.aws_region }}
+      terraform_version: ${{ inputs.terraform_version }}
+      role_name: ${{ format('iac-aws-oidcRole-infra-jvx-{0}', inputs.environment) }}
+      terraform_command: ${{ inputs.terraform_command }}
