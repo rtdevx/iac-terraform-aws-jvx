@@ -29,8 +29,6 @@
 | [aws_autoscaling_group.my_asg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
 | [aws_autoscaling_notification.myasg_notifications](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_notification) | resource |
 | [aws_autoscaling_policy.avg_cpu_policy_greater_than_xx](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_policy) | resource |
-| [aws_db_instance.rdsdb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance) | resource |
-| [aws_db_parameter_group.mysql_tls](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group) | resource |
 | [aws_iam_group_policy_attachment.admin_ssm_attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment) | resource |
 | [aws_iam_instance_profile.ec2_instance_profile_jvx](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_policy.ssm_admin_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
@@ -78,9 +76,6 @@
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS Account ID in which AWS Resources will be created | `string` | `"390157243794"` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | Region in which AWS Resources will be created | `string` | `"eu-west-2"` | no |
 | <a name="input_business_division"></a> [business\_division](#input\_business\_division) | Business Division in the large organization this Infrastructure belongs | `string` | `"operations"` | no |
-| <a name="input_db_instance_identifier"></a> [db\_instance\_identifier](#input\_db\_instance\_identifier) | AWS RDS Database Instance Identifier | `string` | n/a | yes |
-| <a name="input_db_name"></a> [db\_name](#input\_db\_name) | AWS RDS Database Name | `string` | n/a | yes |
-| <a name="input_db_username"></a> [db\_username](#input\_db\_username) | AWS RDS Database Administrator Username | `string` | n/a | yes |
 | <a name="input_dns_name"></a> [dns\_name](#input\_dns\_name) | DNS Name to support multiple environments | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment Variable used as a prefix | `string` | `"dev"` | no |
 | <a name="input_instance_type_private"></a> [instance\_type\_private](#input\_instance\_type\_private) | EC2 Instance Type - AppServer | `string` | `"t3.micro"` | no |
@@ -102,21 +97,6 @@
 | <a name="output_database_subnet_group"></a> [database\_subnet\_group](#output\_database\_subnet\_group) | ID of database subnet group |
 | <a name="output_database_subnets"></a> [database\_subnets](#output\_database\_subnets) | List of IDs of database subnets |
 | <a name="output_database_subnets_cidr_blocks"></a> [database\_subnets\_cidr\_blocks](#output\_database\_subnets\_cidr\_blocks) | List of cidr\_blocks of database subnets |
-| <a name="output_db_instance_address"></a> [db\_instance\_address](#output\_db\_instance\_address) | The address of the RDS instance |
-| <a name="output_db_instance_arn"></a> [db\_instance\_arn](#output\_db\_instance\_arn) | The ARN of the RDS instance |
-| <a name="output_db_instance_availability_zone"></a> [db\_instance\_availability\_zone](#output\_db\_instance\_availability\_zone) | The availability zone of the RDS instance |
-| <a name="output_db_instance_endpoint"></a> [db\_instance\_endpoint](#output\_db\_instance\_endpoint) | The connection endpoint |
-| <a name="output_db_instance_hosted_zone_id"></a> [db\_instance\_hosted\_zone\_id](#output\_db\_instance\_hosted\_zone\_id) | The canonical hosted zone ID of the DB instance (to be used in a Route 53 Alias record) |
-| <a name="output_db_instance_id"></a> [db\_instance\_id](#output\_db\_instance\_id) | The RDS instance ID |
-| <a name="output_db_instance_ip"></a> [db\_instance\_ip](#output\_db\_instance\_ip) | The IP address of the RDS instance |
-| <a name="output_db_instance_name"></a> [db\_instance\_name](#output\_db\_instance\_name) | The database name |
-| <a name="output_db_instance_password"></a> [db\_instance\_password](#output\_db\_instance\_password) | The master username for the database |
-| <a name="output_db_instance_port"></a> [db\_instance\_port](#output\_db\_instance\_port) | The database port |
-| <a name="output_db_instance_resource_id"></a> [db\_instance\_resource\_id](#output\_db\_instance\_resource\_id) | The RDS Resource ID of this instance |
-| <a name="output_db_instance_status"></a> [db\_instance\_status](#output\_db\_instance\_status) | The RDS instance status |
-| <a name="output_db_instance_username"></a> [db\_instance\_username](#output\_db\_instance\_username) | The master username for the database |
-| <a name="output_db_parameter_group_id"></a> [db\_parameter\_group\_id](#output\_db\_parameter\_group\_id) | The db parameter group id |
-| <a name="output_db_subnet_group_id"></a> [db\_subnet\_group\_id](#output\_db\_subnet\_group\_id) | The db subnet group name |
 | <a name="output_dns_lb_demo"></a> [dns\_lb\_demo](#output\_dns\_lb\_demo) | Load Balancer app1 DNS name |
 | <a name="output_hosted_zone_name"></a> [hosted\_zone\_name](#output\_hosted\_zone\_name) | The Hosted Zone name of the desired Hosted Zone. |
 | <a name="output_hosted_zone_zoneid"></a> [hosted\_zone\_zoneid](#output\_hosted\_zone\_zoneid) | The Hosted Zone id of the desired Hosted Zone |
@@ -136,7 +116,6 @@
 | <a name="output_private_web80_sg_group_vpc_id"></a> [private\_web80\_sg\_group\_vpc\_id](#output\_private\_web80\_sg\_group\_vpc\_id) | The VPC ID |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | List of IDs of public subnets |
 | <a name="output_public_subnets_cidr_blocks"></a> [public\_subnets\_cidr\_blocks](#output\_public\_subnets\_cidr\_blocks) | List of cidr\_blocks of public subnets |
-| <a name="output_rds_master_user_secret_arn"></a> [rds\_master\_user\_secret\_arn](#output\_rds\_master\_user\_secret\_arn) | n/a |
 | <a name="output_target_groups_8443_jvx"></a> [target\_groups\_8443\_jvx](#output\_target\_groups\_8443\_jvx) | Map of target groups created and their attributes |
 | <a name="output_vpc_cidr_block"></a> [vpc\_cidr\_block](#output\_vpc\_cidr\_block) | The CIDR block of the VPC |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
