@@ -15,6 +15,9 @@ vpc_cidr = "10.0.0.0/16"
 instance_type_private = "t3.micro"
 //private_instance_count = 2 # NOTE: Probably not needed as ASG will manage this.
 
+# INFO: DB Variables
+db_name                = "webappdb-dev"
+
 # INFO: DNS Name
 dns_name = "dev.aws.skynetx.uk"
 
