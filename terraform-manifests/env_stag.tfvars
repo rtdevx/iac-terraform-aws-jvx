@@ -16,7 +16,7 @@ instance_type_private = "t3.nano"
 //private_instance_count = 2 # NOTE: Probably not needed as ASG will manage this.
 
 # INFO: DB Variables
-db_name                = "webappdb-stag"
+db_name = "webappdbstag"
 
 # INFO: DNS Name
 dns_name = "stag.aws.skynetx.uk"

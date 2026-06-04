@@ -16,7 +16,7 @@ instance_type_private = "t3.micro"
 //private_instance_count = 2 # NOTE: Probably not needed as ASG will manage this.
 
 # INFO: DB Variables
-db_name                = "webappdb-dev"
+db_name = "webappdbdev"
 
 # INFO: DNS Name
 dns_name = "dev.aws.skynetx.uk"
