@@ -1,8 +1,8 @@
 # INFO: Environment specific variables
 
 # INFO: AWS Region and Account
-#aws_region        = "eu-west-2"
-aws_region        = "eu-central-1"
+aws_region        = "eu-west-2"
+#aws_region        = "eu-central-1"
 aws_account_id = "390157243794"
 
 # INFO: Environment
