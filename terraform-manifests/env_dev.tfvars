@@ -21,4 +21,3 @@ db_name = "webappdbdev"
 
 # INFO: DNS Name
 dns_name = "dev.aws.skynetx.uk"
-
